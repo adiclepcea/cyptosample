@@ -116,8 +116,9 @@ func decryptTwofish(crypted, key string) (string, error) {
 	decrypted := ciphertext[twofish.BlockSize:]
 	cbc := cipher.NewCBCDecrypter(block, iv)
 	cbc.CryptBlocks(decrypted, decrypted)
-	s := string(PKCS5UnPadding(decrypted[:]))
-	return s, nil
+	return string(decrypted), nil
+	//s := string(PKCS5UnPadding(decrypted[:]))
+	//return s, nil
 }
 
 func encryptAes(msg, key string, iv []byte) (string, error) {
@@ -149,8 +150,9 @@ func decryptAes(crypted, key string) (string, error) {
 	decrypted := ciphertext[aes.BlockSize:]
 	cbc := cipher.NewCBCDecrypter(block, iv)
 	cbc.CryptBlocks(decrypted, decrypted)
-	s := string(PKCS5UnPadding(decrypted[:]))
-	return s, nil
+	return string(decrypted), nil
+	//s := string(PKCS5UnPadding(decrypted[:]))
+	//return s, nil
 }
 
 // PKCS5Padding fills the text until it reaches the required multiple
